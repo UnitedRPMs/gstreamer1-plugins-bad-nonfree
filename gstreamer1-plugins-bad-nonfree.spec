@@ -3,7 +3,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.10.0
+Version:        1.10.2
 Release:        1%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -29,17 +29,16 @@ license.
 
 %prep
 %setup -q -n gst-plugins-bad-%{version}
-# Build against 1.9.2 as 1.10.0 is not yet in the stable Fedora repo
-sed -i 's/1.10.0/1.9.2/' configure
 
 
 %build
 # Note we don't bother with disabling everything which is in Fedora, that
 # is unmaintainable, instead we selectively run make in subdirs
-%configure \
+%configure --disable-static \
     --with-package-name="gst-plugins-bad 1.0 nonfree rpmfusion rpm" \
     --with-package-origin="http://rpmfusion.org/" \
-    --enable-debug --disable-static --enable-experimental
+    --enable-debug \
+    --enable-experimental
 # Don't use rpath!
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
@@ -67,6 +66,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 
 
 %changelog
+* Sat Dec 10 2016 Pavlo Rudyi <paulcarroty at riseup.net> - 1.10.2-1
+- Update to 1.10.2
+
 * Fri Nov 11 2016 Hans de Goede <j.w.r.degoede@gmail.com> - 1.10.0-1
 - Update to 1.10.0
 
