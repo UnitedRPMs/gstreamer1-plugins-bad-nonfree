@@ -38,21 +38,22 @@ license.
     --with-package-name="gst-plugins-bad 1.0 nonfree rpmfusion rpm" \
     --with-package-origin="http://rpmfusion.org/" \
     --enable-debug \
+    --enable-silent-rules \
     --enable-experimental
 # Don't use rpath!
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 for i in %{extdirs}; do
     pushd $i
-    make %{?_smp_mflags} V=2
+    make %{?_smp_mflags} V=0
     popd
 done
 
 
 %install
 for i in %{extdirs}; do
-    pushd $i
-    make install V=2 DESTDIR=$RPM_BUILD_ROOT
+    pushd $i 
+    make install V=0 DESTDIR=$RPM_BUILD_ROOT
     popd
 done
 rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
