@@ -3,7 +3,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.12.4
+Version:        1.13.90
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -35,8 +35,8 @@ license.
 # Note we don't bother with disabling everything which is in Fedora, that
 # is unmaintainable, instead we selectively run make in subdirs
 %configure --disable-static \
-    --with-package-name="gst-plugins-bad 1.0 nonfree rpmfusion rpm" \
-    --with-package-origin="http://rpmfusion.org/" \
+    --with-package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
+    --with-package-origin="https://unitedrpms.github.io/" \
     --enable-debug \
     --enable-silent-rules \
     --enable-experimental
@@ -67,6 +67,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 
 
 %changelog
+
+* Sun Mar 04 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.13.90-7  
+- Updated to 1.13.90-7
 
 * Fri Dec 08 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.12.4-7
 - Updated to 1.12.4-7
