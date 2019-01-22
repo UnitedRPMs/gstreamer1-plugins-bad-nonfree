@@ -9,8 +9,8 @@ License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%{version}.tar.xz
-BuildRequires:  gstreamer1-devel >= 1.4.0
-BuildRequires:  gstreamer1-plugins-base-devel >= 1.4.0
+BuildRequires:  gstreamer1-devel >= %{version}
+BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  check
 BuildRequires:  gettext-devel
 BuildRequires:  libXt-devel
@@ -18,6 +18,7 @@ BuildRequires:  gtk-doc
 BuildRequires:  orc-devel
 BuildRequires:  libdca-devel
 BuildRequires:  faac-devel
+BuildRequires:	gcc-c++
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
