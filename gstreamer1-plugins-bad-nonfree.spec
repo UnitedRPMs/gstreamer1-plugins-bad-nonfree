@@ -19,6 +19,7 @@ BuildRequires:  orc-devel
 BuildRequires:  libdca-devel
 BuildRequires:  faac-devel
 BuildRequires:	gcc-c++
+BuildRequires:	openssl-devel
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
