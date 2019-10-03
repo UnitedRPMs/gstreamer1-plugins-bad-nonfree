@@ -3,7 +3,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.16.0
+Version:        1.16.1
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -68,6 +68,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 
 
 %changelog
+
+* Wed Oct 02 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.1-7
+- Updated to 1.16.1-7
 
 * Fri Apr 19 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.0-7
 - Updated to 1.16.0-7

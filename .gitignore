@@ -5,3 +5,4 @@ SPECS/*
 SRPMS/*
 gst-plugins-bad*.tar.xz
 .directory
+*.rpm
