@@ -4,7 +4,7 @@
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
 Version:        1.16.1
-Release:        7%{?dist}
+Release:        8%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -17,7 +17,7 @@ BuildRequires:  libXt-devel
 BuildRequires:  gtk-doc
 BuildRequires:  orc-devel
 BuildRequires:  libdca-devel
-BuildRequires:  faac-devel
+BuildRequires:  faac-devel >= 1.30
 BuildRequires:	gcc-c++
 BuildRequires:	openssl-devel
 
@@ -69,6 +69,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 
 
 %changelog
+
+* Fri Oct 18 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.1-8
+- Rebuilt for faac
 
 * Wed Oct 02 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.1-7
 - Updated to 1.16.1-7
