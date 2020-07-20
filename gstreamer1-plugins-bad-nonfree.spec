@@ -3,7 +3,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.16.2
+Version:        1.17.2
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -20,6 +20,23 @@ BuildRequires:  libdca-devel
 BuildRequires:  faac-devel >= 1.30
 BuildRequires:	gcc-c++
 BuildRequires:	openssl-devel
+BuildRequires:	meson
+BuildRequires:	cmake
+BuildRequires:	gobject-introspection-devel
+BuildRequires:	opencv-devel
+BuildRequires:  libdrm-devel
+BuildRequires:	libltc-devel
+BuildRequires:  lcms2-devel
+BuildRequires:  pkgconfig(gudev-1.0)
+BuildRequires:  pkgconfig(libusb-1.0)
+BuildRequires:  pkgconfig(libva-drm)
+BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:  pkgconfig(zvbi-0.2)
+BuildRequires:  pkgconfig(gtk+-3.0)
+BuildRequires:  libnice-devel
+BuildRequires:  liblrdf-devel
+BuildRequires:  lilv-devel
+BuildRequires:  libdvdnav-devel
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -36,39 +53,61 @@ license.
 %build
 # Note we don't bother with disabling everything which is in Fedora, that
 # is unmaintainable, instead we selectively run make in subdirs
-%configure --disable-static \
-    --with-package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
-    --with-package-origin="https://unitedrpms.github.io/" \
-    --enable-debug \
-    --enable-silent-rules \
-    --enable-experimental
-# Don't use rpath!
-sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
-sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
-for i in %{extdirs}; do
-    pushd $i
-    make %{?_smp_mflags} V=0
-    popd
-done
 
+%meson \
+    -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
+    -D package-origin="https://unitedrpms.github.io" \
+    -D doc=disabled -D faac=enabled -D msdk=disabled \
+    -D dts=disabled -D faad=disabled -D bluez=disabled \
+    -D libmms=disabled -D mpeg2enc=disabled -D mplex=disabled \
+    -D neon=disabled -D rtmp=disabled -D rtmp2=disabled \
+    -D flite=disabled -D sbc=disabled  \
+    -D voamrwbenc=disabled -D x265=disabled -D opencv=disabled \
+    -D dvbsuboverlay=disabled -D dvdspu=disabled -D siren=disabled \
+    -D real=disabled -D opensles=disabled -D tinyalsa=disabled \
+    -D wasapi=disabled -D wasapi2=disabled -D avtp=disabled \
+    -D dc1394=disabled -D directfb=disabled -D iqa=disabled \
+    -D libde265=disabled -D musepack=disabled -D openni2=disabled \
+    -D sctp=disabled -D svthevcenc=disabled -D voaacenc=disabled \
+    -D zxing=disabled -D wpe=disabled -D x11=disabled \
+    -D openh264=disabled -D srt=disabled -D openmpt=disabled \
+    -D lv2=disabled -D va=disabled -D spandsp=disabled \
+    -D openal=disabled -D vdpau=disabled -D uvch264=disabled \
+    -D ltc=disabled -D vulkan=disabled -D wayland=disabled \
+    -D libdrm=disabled -D usb=disabled -D va=disabled \
+    -D assrender=disabled -D bz2=disabled -D kate=disabled \
+    -D magicleap=disabled -D aom=disabled -D bs2b=disabled \
+    -D chromaprint=disabled -D curl=disabled -D fdkaac=disabled \
+    -D fluidsynth=disabled -D gme=disabled -D gsm=disabled \
+    -D lrdf=disabled -D ladspa=disabled -D microdns=disabled \
+    -D modplug=disabled -D openjpeg=disabled -D sndfile=disabled \
+    -D ofa=disabled -D openal=disabled -D openexr=disabled \
+    -D openmpt=disabled -D opus=disabled -D rsvg=disabled \
+    -D soundtouch=disabled -D spandsp=disabled -D srt=disabled \
+    -D srtp=disabled -D wildmidi=disabled -D zbar=disabled \
+    -D webrtc=disabled -D webrtcdsp=disabled -D webp=disabled 
+
+%meson_build 
 
 %install
-for i in %{extdirs}; do
-    pushd $i 
-    make install V=0 DESTDIR=$RPM_BUILD_ROOT
-    popd
-done
-rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
+%meson_install 
 
 
 %files
 %doc AUTHORS NEWS README RELEASE
 %license COPYING.LIB
 # Plugins with external dependencies
+%exclude %{_libdir}/
+%exclude %{_datadir}/
+%exclude %{_includedir}/
+%exclude %{_bindir}/
 %{_libdir}/gstreamer-1.0/libgstfaac.so
 
 
 %changelog
+
+* Fri Jul 10 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.17.2-7
+- Updated to 1.17.2
 
 * Wed Dec 04 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.2-7
 - Updated to 1.16.2-7
