@@ -19,6 +19,7 @@ BuildRequires:  orc-devel
 BuildRequires:  libdca-devel
 BuildRequires:  faac-devel >= 1.30
 BuildRequires:	gcc-c++
+BuildRequires:	mesa-libGLES-devel
 BuildRequires:	openssl-devel
 BuildRequires:	meson
 BuildRequires:	cmake
