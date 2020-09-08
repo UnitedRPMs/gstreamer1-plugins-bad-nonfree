@@ -86,6 +86,9 @@ license.
     -D openmpt=disabled -D opus=disabled -D rsvg=disabled \
     -D soundtouch=disabled -D spandsp=disabled -D srt=disabled \
     -D srtp=disabled -D wildmidi=disabled -D zbar=disabled \
+    %if 0%{?fedora} <= 30
+    -D va=disabled -D examples=disabled \
+    %endif
     -D webrtc=disabled -D webrtcdsp=disabled -D webp=disabled 
 
 %meson_build 
