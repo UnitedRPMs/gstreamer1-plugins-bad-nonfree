@@ -75,7 +75,7 @@ license.
     -D lv2=disabled -D spandsp=disabled \
     -D openal=disabled -D vdpau=disabled -D uvch264=disabled \
     -D ltc=disabled -D vulkan=disabled -D wayland=disabled \
-    -D libdrm=disabled -D usb=disabled  \
+    -D libdrm=disabled -D usb=disabled -D examples=disabled  \
     -D assrender=disabled -D bz2=disabled -D kate=disabled \
     -D magicleap=disabled -D aom=disabled -D bs2b=disabled \
     -D chromaprint=disabled -D curl=disabled -D fdkaac=disabled \
@@ -87,7 +87,7 @@ license.
     -D soundtouch=disabled -D spandsp=disabled -D srt=disabled \
     -D srtp=disabled -D wildmidi=disabled -D zbar=disabled \
     %if 0%{?fedora} <= 30
-    -D va=disabled -D examples=disabled \
+    -D va=disabled  
     %endif
     -D webrtc=disabled -D webrtcdsp=disabled -D webp=disabled 
 
