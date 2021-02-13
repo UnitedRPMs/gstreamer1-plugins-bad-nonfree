@@ -3,7 +3,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.18.2
+Version:        1.18.3
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -72,7 +72,7 @@ license.
     -D sctp=disabled -D svthevcenc=disabled -D voaacenc=disabled \
     -D zxing=disabled -D wpe=disabled -D x11=disabled \
     -D openh264=disabled -D srt=disabled -D openmpt=disabled \
-    -D lv2=disabled -D spandsp=disabled \
+    -D lv2=disabled -D spandsp=disabled -D gobject-cast-checks=disabled \
     -D openal=disabled -D vdpau=disabled -D uvch264=disabled \
     -D ltc=disabled -D vulkan=disabled -D wayland=disabled \
     -D libdrm=disabled -D usb=disabled -D examples=disabled  \
@@ -109,6 +109,9 @@ license.
 
 
 %changelog
+
+* Mon Jan 25 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.3-7
+- Updated to 1.18.3
 
 * Mon Dec 07 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.2-7
 - Updated to 1.18.2
