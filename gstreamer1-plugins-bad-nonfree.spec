@@ -3,7 +3,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.18.3
+Version:        1.18.4
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -55,7 +55,7 @@ license.
 # Note we don't bother with disabling everything which is in Fedora, that
 # is unmaintainable, instead we selectively run make in subdirs
 
-%meson \
+meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=/usr/include --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc  \
     -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
     -D package-origin="https://unitedrpms.github.io" \
     -D doc=disabled -D faac=enabled -D msdk=disabled \
@@ -91,10 +91,10 @@ license.
     %endif
     -D webrtc=disabled -D webrtcdsp=disabled -D webp=disabled 
 
-%meson_build 
+%meson_build -C build
 
 %install
-%meson_install 
+%meson_install -C build
 
 
 %files
@@ -109,6 +109,9 @@ license.
 
 
 %changelog
+
+* Mon Apr 19 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.4-7
+- Updated to 1.18.4
 
 * Mon Jan 25 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.3-7
 - Updated to 1.18.3
