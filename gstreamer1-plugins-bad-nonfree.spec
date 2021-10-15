@@ -3,7 +3,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.19.1
+Version:        1.19.2
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -81,7 +81,7 @@ meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir
     -D chromaprint=disabled -D curl=disabled -D fdkaac=disabled \
     -D fluidsynth=disabled -D gme=disabled -D gsm=disabled \
     -D lrdf=disabled -D ladspa=disabled -D microdns=disabled \
-    -D modplug=disabled -D openjpeg=disabled -D sndfile=disabled \
+    -D modplug=disabled -D sndfile=disabled \
     -D ofa=disabled -D openal=disabled -D openexr=disabled \
     -D openmpt=disabled -D opus=disabled -D rsvg=disabled \
     -D soundtouch=disabled -D spandsp=disabled -D srt=disabled \
@@ -109,6 +109,9 @@ meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir
 
 
 %changelog
+
+* Mon Oct 04 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.2-7
+- Updated to 1.19.2
 
 * Sun Jun 20 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.1-7
 - Updated to 1.19.1
