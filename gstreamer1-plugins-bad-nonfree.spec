@@ -1,9 +1,13 @@
 # which plugins to actually build and install
 %global extdirs ext/faac
 
+%global         meson_conf      meson --buildtype=release --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=/usr/include --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc
+
+%global debug_package %{nil}
+
 Summary:        GStreamer 1.0 streaming media framework "bad" non-free plug-ins
 Name:           gstreamer1-plugins-bad-nonfree
-Version:        1.19.2
+Version:        1.19.3
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -55,7 +59,7 @@ license.
 # Note we don't bother with disabling everything which is in Fedora, that
 # is unmaintainable, instead we selectively run make in subdirs
 
-meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=/usr/include --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc  \
+%meson_conf _build \
     -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
     -D package-origin="https://unitedrpms.github.io" \
     -D doc=disabled -D faac=enabled -D msdk=disabled \
@@ -91,10 +95,10 @@ meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir
     %endif
     -D webrtc=disabled -D webrtcdsp=disabled -D webp=disabled 
 
-%meson_build -C build
+%meson_build -C _build
 
 %install
-%meson_install -C build
+%meson_install -C _build 
 
 
 %files
@@ -109,6 +113,9 @@ meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir
 
 
 %changelog
+
+* Wed Nov 17 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.3-7
+- Updated to 1.19.3
 
 * Mon Oct 04 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.2-7
 - Updated to 1.19.2
